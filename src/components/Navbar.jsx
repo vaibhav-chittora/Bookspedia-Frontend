@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
 
@@ -20,17 +20,17 @@ function Navbar() {
     const navItems = (
         <>
             <li>
-                <Link to="/">Home</Link>
+                <NavLink to="/">Home</NavLink>
             </li>
             <li>
-                <Link to="/course">Courses</Link>
+                <NavLink to="/course">Courses</NavLink>
             </li>
 
             <li>
-                <Link to="/contact-us">Contact</Link>
+                <NavLink to="/contact-us">Contact</NavLink>
             </li>
             <li>
-                <Link to="about-us">About</Link>
+                <NavLink to="about-us">About</NavLink>
             </li>
         </>
 
