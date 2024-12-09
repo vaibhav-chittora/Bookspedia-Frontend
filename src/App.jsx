@@ -4,6 +4,7 @@ import Home from './Home/Home'
 import Courses from './courses/Courses'
 import ContactUs from './Contact/ContactUs'
 import AboutUs from './About us/AboutUs'
+import SignUpForm from './components/SignUp'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/course' element={<Courses />} />
+        <Route path='/signup' element={<SignUpForm />} />
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/about-us' element={<AboutUs />} />
 

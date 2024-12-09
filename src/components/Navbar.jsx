@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Login from "./Login";
 
 function Navbar() {
 
@@ -131,7 +132,7 @@ function Navbar() {
                     </label>
 
                     <div className="">
-                        <a className="bg-black text-white px-3 py-1 rounded-md hover:bg-slate-800 duration-300 cursor-pointer">Login</a>
+                        <Login />
                     </div>
                 </div>
             </div>
