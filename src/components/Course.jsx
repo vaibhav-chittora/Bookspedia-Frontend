@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Cards from './Cards'
-import list from '../assets/list.json'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 function Course() {
+    const [books, setBooks] = useState([]);
+    useEffect(() => {
+        const getBook = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/book')
+                console.log(response.data);
+                setBooks(response.data.data)
+            }
+            catch (error) {
+                console.log("error in fetching Books", error);
+            }
+        }
+        getBook();
+    }, [])
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+
     return (
         <>
             <div className='max-w-screen-2xl mx-auto container md:px-20 px-4'>
@@ -26,9 +42,10 @@ function Course() {
                 </div>
                 <div className='mt-12 grid grid-cols-1 md:grid-cols-3'>
                     {
-                        list.map((item) => (
-                            <Cards key={item.id} item={item} />
+                        books.map((item) => (
+                            <Cards key={item._id} item={item} />
                         ))
+
                     }
                 </div>
             </div>
