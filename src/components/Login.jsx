@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -14,16 +15,21 @@ function Login() {
             const response = await axios.post('http://localhost:3000/user/signin', userInfo)
             console.log(response.data);
             if (response.data) {
-                alert("Logged In Successfully")
+                // alert("Logged In Successfully")
+                toast.success('Logged in successfully!');
+
             }
             localStorage.setItem("user", JSON.stringify(response.data.user))
 
         } catch (error) {
             if (error.response.status === 404) {
-                alert("User not found")
+                // alert("User not found");
+                toast.error('User not found!');
             }
             if (error.response.status === 401) {
-                alert("Error : Invalid Password")
+                // alert("Error : Invalid Password");
+                toast.error('Invalid Password!');
+
             }
             console.log("Login Error ", error.response);
         }
