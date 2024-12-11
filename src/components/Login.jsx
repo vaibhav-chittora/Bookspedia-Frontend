@@ -1,10 +1,33 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 function Login() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = async (data) => {
+        const userInfo = {
+            email: data.email,
+            password: data.password
+        }
+        try {
+            const response = await axios.post('http://localhost:3000/user/signin', userInfo)
+            console.log(response.data);
+            if (response.data) {
+                alert("Logged In Successfully")
+            }
+            localStorage.setItem("user", JSON.stringify(response.data.user))
+
+        } catch (error) {
+            if (error.response.status === 404) {
+                alert("User not found")
+            }
+            if (error.response.status === 401) {
+                alert("Error : Invalid Password")
+            }
+            console.log("Login Error ", error.response);
+        }
+    }
 
     const navigate = useNavigate();
 
