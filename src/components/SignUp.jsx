@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -19,11 +19,15 @@ const SignUpForm = () => {
             const response = await axios.post('http://localhost:3000/user/signup', userInfo)
             console.log(response.data.data);
             if (response.data) {
-                toast.success('User Registered Successfully!');
+
+                toast.loading("Hold on, we are registering you...");
                 setTimeout(() => {
                     window.location.reload();
                     <Navigate to='/' />
-                }, 2000);
+                }, 4000);
+                setTimeout(() => {
+                    toast.success('You Registered Successfully!');
+                }, 3000);
 
             }
             localStorage.setItem("user", JSON.stringify(response.data.data))
