@@ -1,10 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
+import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 const SignUpForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
         const userInfo = {
             name: data.name,
@@ -17,6 +20,10 @@ const SignUpForm = () => {
             console.log(response.data.data);
             if (response.data) {
                 toast.success('User Registered Successfully!');
+                setTimeout(() => {
+                    window.location.reload();
+                    <Navigate to='/' />
+                }, 2000);
 
             }
             localStorage.setItem("user", JSON.stringify(response.data.data))
@@ -27,7 +34,6 @@ const SignUpForm = () => {
         }
 
     }
-    const navigate = useNavigate();
     return (
         <div className="min-h-screen items-center justify-center shadow-lg ">
 

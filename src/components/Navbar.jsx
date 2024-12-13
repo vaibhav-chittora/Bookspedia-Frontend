@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Login from "./Login";
+import { useAuth } from "../context/authProvider";
+import Logout from "./Logout";
 
 function Navbar() {
+
+    const [authUser, setAuthUser] = useAuth()
+    console.log(authUser);
 
     const [sticky, setSticky] = useState(false);
     const [theme, setTheme] = useState("light")
@@ -131,9 +136,8 @@ function Navbar() {
                         </svg>
                     </label>
 
-                    <div className="">
-                        <Login />
-                    </div>
+
+                    {authUser ? <Logout /> : <Login />}
                 </div>
             </div>
         </div>

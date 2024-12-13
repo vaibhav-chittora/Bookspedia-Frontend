@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -16,7 +16,12 @@ function Login() {
             console.log(response.data);
             if (response.data) {
                 // alert("Logged In Successfully")
-                toast.success('Logged in successfully!');
+                toast.loading("Hold on, we are logging you in...");
+                setTimeout(() => {
+                    toast.success('Logged in successfully!');
+                    document.getElementById('my_modal_3').close()
+                    window.location.reload();
+                }, 2000);
 
             }
             localStorage.setItem("user", JSON.stringify(response.data.user))

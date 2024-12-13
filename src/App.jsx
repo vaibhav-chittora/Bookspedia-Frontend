@@ -6,14 +6,18 @@ import ContactUs from './Contact/ContactUs'
 import AboutUs from './About us/AboutUs'
 import SignUpForm from './components/SignUp'
 import { Toaster } from 'react-hot-toast'
+import { useAuth } from './context/authProvider'
 
 function App() {
+  const [authUser, setAuthUser] = useAuth()
+  console.log(authUser);
 
   return (
     <>
+
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/course' element={<Courses />} />
+        <Route path='/course' element={authUser ? <Courses /> : <SignUpForm />} />
         <Route path='/signup' element={<SignUpForm />} />
         <Route path='/contact-us' element={<ContactUs />} />
         <Route path='/about-us' element={<AboutUs />} />
