@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAuth } from '../context/authProvider';
+import { useAuth } from '../context/AuthProvider';
 import { MdEmail } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { set } from 'react-hook-form';

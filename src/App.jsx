@@ -6,7 +6,7 @@ import ContactUs from './Contact/ContactUs'
 import AboutUs from './About us/AboutUs'
 import SignUpForm from './components/SignUp'
 import { Toaster } from 'react-hot-toast'
-import { useAuth } from './context/authProvider'
+import { useAuth } from './context/AuthProvider'
 
 function App() {
   const [authUser, setAuthUser] = useAuth()
