@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import Cards from './Cards'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { backendApiUrl } from '../services/apiUrl';
 
 function Course() {
     const [books, setBooks] = useState([]);
     useEffect(() => {
         const getBook = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/book')
+                const response = await axios.get(`${backendApiUrl}/book`)
                 console.log(response.data);
                 setBooks(response.data.data)
             }

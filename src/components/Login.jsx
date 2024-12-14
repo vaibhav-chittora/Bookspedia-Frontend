@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { backendApiUrl } from '../services/apiUrl';
 
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -12,7 +13,7 @@ function Login() {
             password: data.password
         }
         try {
-            const response = await axios.post('http://localhost:3000/user/signin', userInfo)
+            const response = await axios.post(`${backendApiUrl}/user/signin`, userInfo)
             console.log(response.data);
             if (response.data) {
                 // alert("Logged In Successfully")

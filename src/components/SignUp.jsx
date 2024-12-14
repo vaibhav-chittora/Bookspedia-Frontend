@@ -4,6 +4,7 @@ import { set, useForm } from "react-hook-form";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { backendApiUrl } from "../services/apiUrl";
 const SignUpForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -16,7 +17,7 @@ const SignUpForm = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:3000/user/signup', userInfo)
+            const response = await axios.post(`${backendApiUrl}/user/signup`, userInfo)
             console.log(response.data.data);
             if (response.data) {
 
